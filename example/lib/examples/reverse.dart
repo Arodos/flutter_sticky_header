@@ -34,6 +34,7 @@ class _StickyHeaderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverStickyHeader(
+      reversed: true,
       header: Header(index: index),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(

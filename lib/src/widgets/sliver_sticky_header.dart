@@ -154,6 +154,7 @@ class SliverStickyHeader extends RenderObjectWidget {
     this.sliver,
     this.overlapsContent = false,
     this.sticky = true,
+    this.reversed = false,
     this.controller,
   }) : super(key: key);
 
@@ -170,6 +171,7 @@ class SliverStickyHeader extends RenderObjectWidget {
     Widget? sliver,
     bool overlapsContent = false,
     bool sticky = true,
+    bool reversed = false,
     StickyHeaderController? controller,
   }) : this(
           key: key,
@@ -180,6 +182,7 @@ class SliverStickyHeader extends RenderObjectWidget {
           sliver: sliver,
           overlapsContent: overlapsContent,
           sticky: sticky,
+          reversed: reversed,
           controller: controller,
         );
 
@@ -202,12 +205,17 @@ class SliverStickyHeader extends RenderObjectWidget {
   /// If a [StickyHeaderController] is not provided, then the value of [DefaultStickyHeaderController.of]
   /// will be used.
   final StickyHeaderController? controller;
+  
+  /// NEW
+  /// Whether to reverse the sliver. (Header will be at the bottom)
+  final bool reversed;
 
   @override
   RenderSliverStickyHeader createRenderObject(BuildContext context) {
     return RenderSliverStickyHeader(
       overlapsContent: overlapsContent,
       sticky: sticky,
+      reversed: reversed,
       controller: controller ?? DefaultStickyHeaderController.of(context),
     );
   }
@@ -224,6 +232,7 @@ class SliverStickyHeader extends RenderObjectWidget {
     renderObject
       ..overlapsContent = overlapsContent
       ..sticky = sticky
+      ..reversed = reversed
       ..controller = controller ?? DefaultStickyHeaderController.of(context);
   }
 }
@@ -249,6 +258,7 @@ class SliverStickyHeaderBuilder extends StatelessWidget {
     this.sliver,
     this.overlapsContent = false,
     this.sticky = true,
+    this.reversed = false,
     this.controller,
   }) : super(key: key);
 
@@ -274,6 +284,8 @@ class SliverStickyHeaderBuilder extends StatelessWidget {
   /// If a [StickyHeaderController] is not provided, then the value of [DefaultStickyHeaderController.of]
   /// will be used.
   final StickyHeaderController? controller;
+  
+  final bool reversed;
 
   @override
   Widget build(BuildContext context) {
@@ -281,6 +293,7 @@ class SliverStickyHeaderBuilder extends StatelessWidget {
       overlapsContent: overlapsContent,
       sliver: sliver,
       sticky: sticky,
+      reversed: reversed,
       controller: controller,
       header: ValueLayoutBuilder<SliverStickyHeaderState>(
         builder: (context, constraints) => builder(context, constraints.value),
