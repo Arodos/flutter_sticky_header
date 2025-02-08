@@ -1,4 +1,4 @@
-# flutter_sticky_header
+# flutter_sticky_header (REVERSED)
 
 A Flutter implementation of sticky headers with a sliver as a child.
 
